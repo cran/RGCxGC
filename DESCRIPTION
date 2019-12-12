@@ -2,8 +2,8 @@ Package: RGCxGC
 Type: Package
 Title: Preprocessing and Multivariate Analysis of Bidimensional Gas
         Chromatography Data
-Version: 1.0.0
-Date: 2019-01-09
+Version: 1.1.0
+Date: 2019-12-05
 Authors@R: c(
     person("Cristian", "Quiroz-Moreno", email = "cristianquirozd1997@gmail.com",
            role = c("aut", "cre")),
@@ -15,24 +15,27 @@ Author: Cristian Quiroz-Moreno [aut, cre],
   Guilherme L. Alexandrino [aut],
   Noroska G.S. Mogollón [aut]
 Maintainer: Cristian Quiroz-Moreno <cristianquirozd1997@gmail.com>
-Description: Implementation of chemometrics analysis for bidimensional gas 
-    chromatography data. This package can handle data for common scientific data
-    format (netCDF) and fold it to 2D chromatogram. Then, it can perform
+Description: Toolbox for chemometrics analysis of bidimensional gas 
+    chromatography data. This package import data for common scientific data
+    format (NetCDF) and fold it to 2D chromatogram. Then, it can perform
     preprocessing and multivariate analysis. In the preprocessing algorithms,
     baseline correction, smoothing, and peak alignment are available.
     While in multivariate analysis, multiway principal component analysis is
     incorporated.
 License: MIT + file LICENSE
-Imports: colorRamps (>= 2.3), Rdpack (>= 0.7), prettydoc (>= 0.2)
+URL: https://github.com/DanielQuiroz97/RGCxGC
+BugReports: https://github.com/DanielQuiroz97/RGCxGC/issues
+Imports: colorRamps (>= 2.3), Rdpack (>= 0.7), stats, methods, graphics
 RdMacros: Rdpack
-Depends: R (>= 3.5.0), stats, methods, graphics, RNetCDF (>= 1.9-1),
-        ptw (>= 1.9-13)
+biocViews:
+Depends: R (>= 3.5.0), RNetCDF (>= 1.9-1), ptw (>= 1.9-13), mixOmics
 LazyData: true
 RoxygenNote: 6.1.1
 Encoding: UTF-8
-Suggests: knitr, rmarkdown
+Suggests: knitr, rmarkdown, lattice (>= 0.20), MASS, caret, prettydoc
+        (>= 0.3),
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2019-01-12 22:56:13 UTC; cizquime
+Packaged: 2019-12-12 00:51:41 UTC; quiroz
 Repository: CRAN
-Date/Publication: 2019-01-20 17:30:03 UTC
+Date/Publication: 2019-12-12 09:20:12 UTC

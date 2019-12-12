@@ -6,19 +6,19 @@
 \title{Subclass raw_GCxGC}
 \description{
 Subclass \emph{raw_GCxGC} are contained in \emph{GCxGC} super class. It
-contains a dedicated slot to storage the folded bidimensional chromatogram.
+contains a dedicated slot to storage the folded two-dimensional chromatogram.
 }
 \details{
 In the first creation of a \emph{raw_GCxGC} object, the slot for the
-chromatogram. To read and fold the chromatogram use the function
-\code{\link{read_chrom}}.
+chromatogram is not created yet. To read and fold the chromatogram 
+use the \code{\link{read_chrom}}  function.
 }
 \section{Slots}{
 
 \describe{
 \item{\code{chromatogram}}{a numeric matrix.}
 
-\item{\code{time}}{a vector of to elements with the range of the first dimenstion
-retention time}
+\item{\code{time}}{a vector of two elements with the range of the first dimenstion
+run time}
 }}
 

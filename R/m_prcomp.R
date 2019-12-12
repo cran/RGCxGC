@@ -18,8 +18,17 @@ setMethod(f = "base_MPCA",
             raw_signal <-  t(raw_signal)
             col_0var <- apply(raw_signal, 2, var) != 0
             col_removed <- which(!col_0var)
-            raw_signal <- raw_signal[, col_0var]
-            pca <- prcomp(raw_signal, center = center, scale. = scale, ...)
+            if (length(col_removed) != 0){
+              raw_signal <- raw_signal[, -col_removed]
+              warning(paste0(length(col_removed), "variables with 0 variance were
+                             removed"))
+            }
+            
+            if ( sum( is.na(col_0var) ) ){
+              warning("NAs wer found and replaced with 0")
+              raw_signal[is.na(raw_signal)] <- 0
+            }
+            pca <- prcomp(raw_signal, center = center, scale. = scale)
             sum_pca <- list(summary = summary(pca))
             lds <-  lapply(seq(npcs), function(i) pca$rotation[, i])
             names(lds) <- paste0("PC", seq(npcs))
@@ -52,8 +61,8 @@ setMethod(f = "method_MPCA",
           })
 #' Multiway Principal Component Analysis
 #'
-#' `MPCA` Performs a multiway principal components analysis on the given
-#' bidimensional chromatograms and returns the rusults  as object of class
+#' `m_prcomp` Performs a multiway principal components analysis on a given
+#' two-dimensional chromatograms and returns the rusults as object of class
 #' MPCA.
 #"
 #' Before to perform the calculation, each given chromatogramas are unfolded
@@ -64,18 +73,18 @@ setMethod(f = "method_MPCA",
 #"
 #' @param chrom Multiple chromatograms readed or batch aligned
 #' @param center A logical value indicating whether the variables should be
-#'   shifted to be zero centered. True is set by default and is strongly
-#'   seggested not to change to False.   
+#'   shifted to be zero centered. FALSE is set by default.
 #' @param scale a logical value indicating whether the variables should
 #'  be scaled to have unit variance before the analysis takes place. The
-#'  default is True to give the same variable importance in chemometrics.
+#'  default is FALSE.
 #' @param npcs an integer indicating how many principals components are
 #'  desired to mantain. The default is 3 principal components.
-#' @param ... Other argments passed to prcomp function.
+#' @param ... Other argments passed to \code{\link[stats]{prcomp}}
+#'  function.
 #' 
 #' @return MPCA returns a list whit class "MPCA" containing the summary of the
-#'   analysis, the scores matrix, and unfolded loadings, and the metadata if it
-#'   was providen when chromatograms were joined.
+#'   analysis, the scores matrix, unfolded loadings, and the metadata if it
+#'   was provided when chromatograms were joined.
 #'  
 #' @importFrom stats prcomp var
 #' @importFrom methods new
@@ -84,15 +93,19 @@ setMethod(f = "method_MPCA",
 #' 
 #' data(MTBLS579)
 #' \donttest{
+#' # Perform multiway principal component analysis
 #' MTBLS579_mpca <- m_prcomp(MTBLS579)
+#' # Print MPCA summary
 #' print(MTBLS579_mpca)
+#' # Retrieve MPCA scores
 #' scores(MTBLS579_mpca)
+#' # Plot bidimensional scores
 #' plot_loading(MTBLS579_mpca)
 #' }
 #' 
 #' @references 
 #'     \insertAllCited{}
-m_prcomp <- function(chrom, center = TRUE, scale = TRUE, npcs = 3, ...) {
+m_prcomp <- function(chrom, center = FALSE, scale = FALSE, npcs = 3, ...) {
   multiway_pca <- method_MPCA(chrom = chrom, center = center,
                               scale = scale, npcs = npcs, ...)
   return(multiway_pca)

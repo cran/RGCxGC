@@ -2,42 +2,70 @@
 % Please edit documentation in R/batchTwoDCOW.R
 \name{batch_2DCOW}
 \alias{batch_2DCOW}
-\title{Two Dimensional COW in batch.}
+\title{Two-dimensional COW in batch.}
 \usage{
-batch_2DCOW(chrom_names, mod_time, segments, max_warp)
+batch_2DCOW(reference, sample_chroms, segments, max_warp, add_ref = F)
 }
 \arguments{
-\item{chrom_names}{The names of the chromatograms to be aligned,
-the first chromatogram name will be considered as the 
-reference chromatogram.}
+\item{reference}{a GCxGC chromatogram wich will be taken as the reference 
+chromatogram.}
 
-\item{mod_time}{The modulation time of the experiment.}
+\item{sample_chroms}{a named list with the sample chromatograms which will
+be aligned against to the reference chromatogram.}
 
-\item{segments}{A two integer vector with number of segments
-which the first and second dimension will be subdivided, respectively.}
+\item{segments}{a two integer vector with the number of segments
+which the first and second dimension will be divided, respectively.}
 
-\item{max_warp}{A two intger vector with the maximum warping parameter.
-\emph{Name} to merge with the chromatograms.}
+\item{max_warp}{a two intger vector with the maximum warping parameter for
+the first and second dimension}
+
+\item{add_ref}{a logical indicating if the reference chromatogram will
+be joined together with the sample chromatograms. By the fault add_ref = F.
+If add_ref is set T, the provide reference chromatogram will be included as
+another sample chromatogram in the downstream analysis.}
 }
 \description{
-`batch_2DCOW` returns the aligned chromatogram in a named list slot.
-The first chromatogram is considered as the reference.
+`batch_2DCOW` perform two-dicmensional correlation optimized warping
+alignment in batch.
 }
 \details{
-This is an adaptation of bidimesional COW alignment, first implementated 
-in MATLAB. This function takes a sample chromatogram to be aligned 
-to the reference. The argument [segment] will be used to split the whole
-chromatogram in n parts in the first and the second dimension respectevily.
-The [max_warp] argument provides de maximum tolerace of the signal
-transformation as well to the first and the second dimension.
+The first argument is the reference chromatogram which other chromatograms
+will aligned against. Then, a named list is needed for the sample_chroms
+argumnet. The chromatogram in this list will be aligned using the reference
+chromatogram. By default, the ference chromatogram will be not included in
+the subsequent analysis, such as MPCA. If you would like to add the reference
+chromatogram, then add_ref = T.
+
+This is an adaptation of two-dimesional COW alignment, firstly implemented
+in MATLAB. This function takes a set of samples chromatogram to be aligned 
+against to the reference. The argument [segment] will be used 
+to split the whole chromatogram in \emph{n} and \emph{m} parts in the first
+and the second dimension, respectively. The [max_warp] argument provides
+the maximum tolerance of the signal transformation for the first and the
+second dimension, respectively.
 }
 \examples{
 
+# Read Sample chromatogram
 GB08_fl <- system.file("extdata", "08GB.cdf", package = "RGCxGC")
+MTBLS08 <- read_chrom(GB08_fl, mod_time = 5)
+
+# Read reference chromatogram
 GB09_fl <- system.file("extdata", "09GB.cdf", package = "RGCxGC")
-chrom_nm <- c(GB08_fl, GB09_fl)
+MTBLS09 <- read_chrom(GB09_fl, mod_time = 5)
+
+# Create a named list
+# MTBLS08 will be repeated for exemplification
+# Considerer that chromatograms are renamed considering the list names
+batch_samples <- list(Chrom1 = MTBLS08, Chrom2 = MTBLS08)
+
 \donttest{
-batch_alignment <- batch_2DCOW(chrom_nm, 5L, c(10, 40), c(1, 10))
+# Perform batch 2DCOW alignment
+# Add the reference chromatogram as another sample
+batch_alignment <- batch_2DCOW(MTBLS09, batch_samples,
+                               c(10, 40), c(1, 10), add_ref = T)
+# Exclude the reference chromatogram in the sample chromatogram set
+batch_alignment <- batch_2DCOW(MTBLS09, batch_samples, c(10, 40), c(1, 10))
 }
 
 }

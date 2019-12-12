@@ -3,26 +3,16 @@
 \docType{class}
 \name{MPCA-class}
 \alias{MPCA-class}
-\title{Class MPCA}
+\title{Subclass MPCA
+\emph{MPCA} subclass for Multiway Principal Component Analysis object}
 \description{
-Class \emph{MPCA} defines the superclass of Multiway Principal Component
-Analysis
+Subclass MPCA
+\emph{MPCA} subclass for Multiway Principal Component Analysis object
 }
 \section{Slots}{
 
 \describe{
 \item{\code{scores}}{A matrix with the eigenvalues of projected chromatograms
 into principal components space.}
-
-\item{\code{loadings}}{The eigenvectors of each principal component.}
-
-\item{\code{summary}}{The summary of the multiway principal component analysis.}
-
-\item{\code{groups}}{A data.frame with the experiment metadata. It must have a column}
-
-\item{\code{time}}{The time range of chromatographic run}
-
-\item{\code{mod_time}}{modulation time of the second dimension
-\emph{Name} to join with chromatograms.}
 }}
 

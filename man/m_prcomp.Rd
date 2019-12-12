@@ -4,32 +4,32 @@
 \alias{m_prcomp}
 \title{Multiway Principal Component Analysis}
 \usage{
-m_prcomp(chrom, center = TRUE, scale = TRUE, npcs = 3, ...)
+m_prcomp(chrom, center = FALSE, scale = FALSE, npcs = 3, ...)
 }
 \arguments{
 \item{chrom}{Multiple chromatograms readed or batch aligned}
 
 \item{center}{A logical value indicating whether the variables should be
-shifted to be zero centered. True is set by default and is strongly
-seggested not to change to False.}
+shifted to be zero centered. FALSE is set by default.}
 
 \item{scale}{a logical value indicating whether the variables should
 be scaled to have unit variance before the analysis takes place. The
-default is True to give the same variable importance in chemometrics.}
+default is FALSE.}
 
 \item{npcs}{an integer indicating how many principals components are
 desired to mantain. The default is 3 principal components.}
 
-\item{...}{Other argments passed to prcomp function.}
+\item{...}{Other argments passed to \code{\link[stats]{prcomp}}
+function.}
 }
 \value{
 MPCA returns a list whit class "MPCA" containing the summary of the
-  analysis, the scores matrix, and unfolded loadings, and the metadata if it
-  was providen when chromatograms were joined.
+  analysis, the scores matrix, unfolded loadings, and the metadata if it
+  was provided when chromatograms were joined.
 }
 \description{
-`MPCA` Performs a multiway principal components analysis on the given
-bidimensional chromatograms and returns the rusults  as object of class
+`m_prcomp` Performs a multiway principal components analysis on a given
+two-dimensional chromatograms and returns the rusults as object of class
 MPCA.
 Before to perform the calculation, each given chromatogramas are unfolded
 to a single dimension. All chromatograms are merged and principal component 
@@ -41,9 +41,13 @@ This algorithm was first presented by \insertCite{Wold1987}{RGCxGC}.
 
 data(MTBLS579)
 \donttest{
+# Perform multiway principal component analysis
 MTBLS579_mpca <- m_prcomp(MTBLS579)
+# Print MPCA summary
 print(MTBLS579_mpca)
+# Retrieve MPCA scores
 scores(MTBLS579_mpca)
+# Plot bidimensional scores
 plot_loading(MTBLS579_mpca)
 }
 

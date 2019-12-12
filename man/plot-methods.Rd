@@ -6,20 +6,25 @@
 \alias{plot,GCxGC-method}
 \title{Method plot}
 \usage{
-plot(Object, ...)
+plot(Object, type = "f", ...)
 
-\S4method{plot}{GCxGC}(Object, ...)
+\S4method{plot}{GCxGC}(Object, type = "f", ...)
 }
 \arguments{
-\item{Object}{a GCxGC chromatogram, it could be a raw, or preprocessed
-chromatogram}
+\item{Object}{a GCxGC chromatogram, it can be a raw, or preprocessed
+chromatogram.}
 
-\item{...}{Other parameters passes to \code{\link[graphics]{filled.contour}}
-function.}
+\item{type}{a character indicating the type of chromatogram representation.
+By default, type = "f" for \code{\link[graphics]{filled.contour}} function,
+if type = "c" only contours or isolines will be displayed by using the
+ \code{\link[graphics]{contour}} function.}
+
+\item{...}{Other parameters passed to \code{\link[graphics]{filled.contour}}
+or \code{\link[graphics]{filled.contour}} function, it depends on the value
+of the \emph{type} argument.}
 }
 \description{
-`plot` plot the bidimensional chromatogram as a
- filled contour plot
+`plot` plot the two-dimensional chromatogram as a contour plot.
 }
 \details{
 This plot function employs the built-in countour function. As
@@ -32,7 +37,7 @@ library(colorRamps)
 chrom_name <-  system.file("extdata", "08GB.cdf", package = "RGCxGC")
 chrom_2D <- read_chrom(chrom_name, 5L)
 plot(chrom_2D, nlevels = 150, color.palette = matlab.like)
-
+plot(chrom_2D, type = "c", nlevels = 50, col = matlab.like(30))
 }
 \references{
 \insertAllCited{}

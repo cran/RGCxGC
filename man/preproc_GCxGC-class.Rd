@@ -6,11 +6,11 @@
 \title{Subclass preproc_GCxGC}
 \description{
 Subclass \emph{preproc_GCxGC} are contained in \emph{raw_GCxGC} super class.
-It contains a dedicated slot to storage the preprocessed bidimensional
+It contains a dedicated slot to storage the preprocessed two-dimensional
 chromatogram.
 }
 \details{
-After reading a bidimensional chromatogram, you can perform serveral
- preprocessing technicas as smothing, or baseline correction. It will
-create an object of subclass preproc_GCxGC.
+After reading a two-dimensional chromatogram, you can perform serveral
+preprocessing techniques such as smoothing or baseline correction.
+This action will create an object of a preproc_GCxGC subclass.
 }
