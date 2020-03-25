@@ -11,14 +11,16 @@ setGeneric(name = "dephase_chrom",
 #' @description `dephase_chrom` shifts the retention time in the second
 #'  dimension of the two-dimensional chromatogram. This procedure is usually
 #'  applied in cases when part of peaks is splited in at the final and beginning
-#'  of the second dimension. The dephasing procedure is performing by splitting
-#'  the chromagram with the relative value provided.
+#'  of the second dimension. Also, the solvent effect and column bleeding can
+#'  be removing by dephasing the chromatogram. The dephasing procedure is
+#'  performing by splitting the chromagram with the relative value provided.
 #'  
 #' @param Object a GCxGC class object
 #' @param rel_dephase a numeric value from 0 to 100 with the relative dephasing
 #'    position.
 #' @export
-#' @examples 
+#' @examples
+#' \donttest{ 
 #'  library(colorRamps)
 #'  GB08_fl <- system.file("extdata", "08GB.cdf", package = "RGCxGC")
 #'  GB08 <- read_chrom(GB08_fl, 5L)
@@ -27,6 +29,7 @@ setGeneric(name = "dephase_chrom",
 #'  GB08_d25 <- dephase_chrom(GB08, 25)
 #'  plot(GB08_d25, nlevels = 150, color.palette = matlab.like,
 #'       main = "25% dephased chromatogram")
+#'  }
 setMethod(f = "dephase_chrom",
           signature = c("GCxGC"),
           definition =  function(Object, rel_dephase) {

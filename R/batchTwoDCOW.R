@@ -52,8 +52,8 @@ setMethod(f = "method_batch_2DCOW",
 #' alignment in batch.
 #' 
 #' The first argument is the reference chromatogram which other chromatograms
-#' will aligned against. Then, a named list is needed for the sample_chroms
-#' argumnet. The chromatogram in this list will be aligned using the reference
+#' will aligned against to. Then, a named list is needed for the sample_chroms
+#' argumnet. Each chromatogram in this list will be aligned using the reference
 #' chromatogram. By default, the ference chromatogram will be not included in
 #' the subsequent analysis, such as MPCA. If you would like to add the reference
 #' chromatogram, then add_ref = T.
@@ -76,8 +76,8 @@ setMethod(f = "method_batch_2DCOW",
 #'  the first and second dimension
 #' @param add_ref a logical indicating if the reference chromatogram will
 #'  be joined together with the sample chromatograms. By the fault add_ref = F.
-#'  If add_ref is set T, the provide reference chromatogram will be included as
-#'  another sample chromatogram in the downstream analysis.
+#'  If add_ref is set to T, the provide reference chromatogram will 
+#'  be included as another sample chromatogram in the downstream analysis.
 #' @importFrom methods new is
 #' @export
 #' @examples
@@ -99,13 +99,13 @@ setMethod(f = "method_batch_2DCOW",
 #' # Perform batch 2DCOW alignment
 #' # Add the reference chromatogram as another sample
 #' batch_alignment <- batch_2DCOW(MTBLS09, batch_samples,
-#'                                c(10, 40), c(1, 10), add_ref = T)
+#'                                c(10, 40), c(1, 10), add_ref = TRUE)
 #' # Exclude the reference chromatogram in the sample chromatogram set
 #' batch_alignment <- batch_2DCOW(MTBLS09, batch_samples, c(10, 40), c(1, 10))
 #' }
 #' 
 batch_2DCOW <- function(reference, sample_chroms, segments, max_warp,
-                        add_ref = F) {
+                        add_ref = FALSE) {
   if (length(sample_chroms) < 2)
     stop("At least two sample chromatograms are needed")
   if (length(names(sample_chroms)) != length(sample_chroms))

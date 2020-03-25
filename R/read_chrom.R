@@ -72,7 +72,7 @@ setMethod(f = "base_GCxGC",
               cat(paste("1D (min):", round(time_rn[1], 2),
                         round(time_rn[2], 2),"\n"))
               cat(paste("2D (sec):", n_mod_time[1], n_mod_time[2], "\n"))
-              cat(paste("Acquisitoin rate:", round(sam_rate, 0), "\n"))
+              cat(paste("Acquisition rate:", round(sam_rate, 0), "\n"))
             }
             return(bidim_chrom)
           }
@@ -110,7 +110,7 @@ setMethod(f = "Mread_GCxGC",
 #' time, the chromatographic time range and the two-dimensional chromatogram.
 #' 
 #' This function reads the NetCDF file and retrieves values in the
-#' \emph{total_intensity} variable. Then, with the provided sampling rate and
+#' \emph{total_intensity} array. Then, with the provided sampling rate and
 #' modulation time, the chromatogram is folded into a numerical matrix,
 #' representing the two-dimensional chromatogram. This function is an
 #' adaptation of the presented routine by \insertCite{Skov2008;textual}{RGCxGC}.

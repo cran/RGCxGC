@@ -2,8 +2,8 @@ Package: RGCxGC
 Type: Package
 Title: Preprocessing and Multivariate Analysis of Bidimensional Gas
         Chromatography Data
-Version: 1.1.0
-Date: 2019-12-05
+Version: 1.1-1
+Date: 2020-03-24
 Authors@R: c(
     person("Cristian", "Quiroz-Moreno", email = "cristianquirozd1997@gmail.com",
            role = c("aut", "cre")),
@@ -11,9 +11,6 @@ Authors@R: c(
            role = "aut"),
     person("Noroska", "G.S. Mogollón", email = "gaby867@gmail.com",
            role = "aut"))
-Author: Cristian Quiroz-Moreno [aut, cre],
-  Guilherme L. Alexandrino [aut],
-  Noroska G.S. Mogollón [aut]
 Maintainer: Cristian Quiroz-Moreno <cristianquirozd1997@gmail.com>
 Description: Toolbox for chemometrics analysis of bidimensional gas 
     chromatography data. This package import data for common scientific data
@@ -25,17 +22,19 @@ Description: Toolbox for chemometrics analysis of bidimensional gas
 License: MIT + file LICENSE
 URL: https://github.com/DanielQuiroz97/RGCxGC
 BugReports: https://github.com/DanielQuiroz97/RGCxGC/issues
-Imports: colorRamps (>= 2.3), Rdpack (>= 0.7), stats, methods, graphics
+Imports: colorRamps, Rdpack, stats, methods, graphics
 RdMacros: Rdpack
 biocViews:
-Depends: R (>= 3.5.0), RNetCDF (>= 1.9-1), ptw (>= 1.9-13), mixOmics
+Depends: R (>= 3.6.0), RNetCDF, ptw, mixOmics
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Encoding: UTF-8
-Suggests: knitr, rmarkdown, lattice (>= 0.20), MASS, caret, prettydoc
-        (>= 0.3),
+Suggests: knitr, rmarkdown, lattice, MASS, caret, rgl, prettydoc,
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2019-12-12 00:51:41 UTC; quiroz
+Packaged: 2020-03-25 05:47:26 UTC; quiroz
+Author: Cristian Quiroz-Moreno [aut, cre],
+  Guilherme L. Alexandrino [aut],
+  Noroska G.S. Mogollón [aut]
 Repository: CRAN
-Date/Publication: 2019-12-12 09:20:12 UTC
+Date/Publication: 2020-03-25 16:10:08 UTC

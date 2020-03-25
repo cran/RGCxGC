@@ -10,7 +10,7 @@ setMethod(f = "base_makelds",
             m_loadings <- lapply(data.frame(Object),
                                  function(x, D1_cols, D2_rows){
                                    m_lds <- matrix(x, nrow = D2_rows,
-                                                   ncol = D1_cols, byrow = T)
+                                                   ncol = D1_cols, byrow = TRUE)
                                    m_lds
                                  }, D1_cols = D1_cols, D2_rows = D2_rows)
             m_loadings
@@ -32,7 +32,7 @@ setMethod(f = "base_makelds",
 #'  columns and eigenvalues as rows.
 #' @param time a vector of length two with the time range of the
 #'  chromatographic run
-#' @param mod_time the modulation time
+#' @param mod_time the modulation time of the second dimension.
 #' @param acq_rate the acquisition rate of the mass analyzer. 
 #'  The acquisition rate  is printed when read_chrom function is performed
 #' @export

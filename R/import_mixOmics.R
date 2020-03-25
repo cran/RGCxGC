@@ -21,7 +21,7 @@ setGeneric(name = "import_mixOmics",
 #'   requiered information will be retrieved from. On the other hand,
 #'   user can also provide all the needed information
 #'   (\emph{mod_time}, \emph{time_range}, \emph{sampling_rt})
-#'   to fold eigenvectors into a GCxGC chromatogram.
+#'   to fold eigenvectors into a typical GCxGC chromatogram.
 #'   
 #' @param chromatogram a typicial GCxGC imported or preprocessed chromatogram.
 #' @param model a partial least square discriminant analysis based model, built
@@ -43,12 +43,12 @@ setGeneric(name = "import_mixOmics",
 #' data(Myrothecium)
 #' 
 #' # Unfold chromatograms
-#' list_chrom <- unfold_chrom(all_chrom)
+#' list_chrom <- unfold_chrom(Myrothecium)
 #' unfolded_chrom <- list_chrom$chromatogram
 #' colnames(unfolded_chrom) <- paste0("RT", seq(dim(unfolded_chrom)[2]))
-#' metadata <- get_metadata(all_chrom)
+#' metadata <- get_metadata(Myrothecium)
 #' 
-#' index <- get_metadata(all_chrom)
+#' index <- get_metadata(Myrothecium)
 #' # Create a response variable
 #' Y <- factor(index$Type)
 #' 
@@ -58,14 +58,10 @@ setGeneric(name = "import_mixOmics",
 #  #Tune pls-da
 #' chrom_dim <- dim(unfolded_chrom)[2]
 #' list.keepX <- seq(chrom_dim/3, chrom_dim, by = 5000)
-
-#'tune.splsda <- tune.splsda(unfolded_chrom, Y, ncomp = 2, validation = 'loo',
-#'                           progressBar = T, dist = 'max.dist',
-#'                           cpus = 12, # Set cpus according with your pc
+#' tune.splsda <- tune.splsda(unfolded_chrom, Y, ncomp = 2, validation = 'loo',
+#'                           progressBar = TRUE, dist = 'max.dist',
+#'                           cpus = 1, # Set cpus according with your pc
 #'                           test.keepX = list.keepX)
-#' # Plot error rates
-#' graphics::plot(tune.splsda)
-
 #' # Number of variables per component
 #' tune.splsda$choice.keepX
 #' # Remove zero variance predictor variables
@@ -93,7 +89,7 @@ setMethod(f = "import_mixOmics", signature = "GCxGC",
               n_col <- ncol(chrom)
               loadings_2d <- lapply(raw_loadings,
                                     FUN = function(lds, n_row, n_col){
-                matrix(lds, ncol = n_col, nrow = n_row, byrow = T)
+                matrix(lds, ncol = n_col, nrow = n_row, byrow = TRUE)
               }, n_row = n_row, n_col = n_col  )
               
             } else{
@@ -102,7 +98,7 @@ setMethod(f = "import_mixOmics", signature = "GCxGC",
               len_2d <- floor(ncol(raw_loadings) / len_1d)
               loadings_2d <- lapply(raw_loadings,
                                     FUN = function(lds, n_row, n_col){
-                matrix(lds,nrow = len_1d, ncol = len_2d, byrow = T)
+                matrix(lds,nrow = len_1d, ncol = len_2d, byrow = TRUE)
               }  )
             }
             mod_time <- chromatogram@mod_time
