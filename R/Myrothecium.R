@@ -1,8 +1,7 @@
-#' @title  Microbial antagonism between \emph{Curvularia sp.} facultative
-#' pathogen and the \emph{Myrothecium sp.} antagonist. 
+#' @title  Microbial metabolism kinetics of \emph{Myrothecium sp.}
 #' 
 #' @description This object contains six chromatograms of the microbial
-#' antagonism interaction. Microbials were cultured in carrot-maize-agar.
+#' metabolic kinetics. \emph{Myrothecium sp.} were cultured in CMA.
 #' Inoculation was made from Petri dishes with the fully-grown fungal cells and
 #' sterile distilled water (to wash the surface of the plate). The plate was 
 #' scraped with a sterile glass handle to obtain the spore suspension.
@@ -30,14 +29,14 @@
 #' electron ionization (70eV).
 #' 
 #' The original study was developed by
-#'  \insertCite{Nasstrom2018;textual}{RGCxGC}.
+#' \insertCite{Quiroz-Moreno2020;textual}{RGCxGC}.
 #' 
 #' @docType data
 #' 
 #' @usage data(Myrothecium)
 #' 
 #' @keywords datasets antagonism microbial
-#' 
+#' @importFrom Rdpack reprompt
 #' @format A joined_chrom object containing four slots:
 #' \describe{
 #'   \item{chromatograms}{A named list with the two-dimensional chromatograms}
@@ -45,4 +44,6 @@
 #'   \item{time}{The retantion time range of the chromatographic run}
 #'   \item{mod_time}{The modulation time}
 #' }
+#' @references 
+#'     \insertAllCited{}
 "Myrothecium"
